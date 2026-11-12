@@ -14,9 +14,12 @@ um backlog curto e entregas incrementais permitem feedback e adaptação, em lin
 
 ## Funcionalidades da primeira versão
 
+Início com destaques, catálogo, carrinho e confirmação em páginas com menu.
 Catálogo de três produtos fictícios, consulta de produto, carrinho com quantidades,
 total exato em centavos, validação de estoque demonstrativo e pedido simulado.
 Não há cadastro, login, cartão, endereço, banco de dados, pagamento nem persistência.
+O navegador mantém apenas o carrinho e o último pedido simulado durante a sessão
+da aba, para preservar a navegação; o servidor não armazena pedidos.
 
 ## Papéis e responsabilidades
 

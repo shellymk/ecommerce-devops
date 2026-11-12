@@ -15,7 +15,7 @@ def client():
 def test_health(client):
     resposta = client.get("/health")
     assert resposta.status_code == 200
-    assert resposta.json() == {"status": "ok", "version": "0.1.0"}
+    assert resposta.json() == {"status": "ok", "version": "0.2.0"}
 
 
 def test_catalogo_e_produto(client):
@@ -85,7 +85,18 @@ def test_json_invalido(client):
     assert resposta.status_code == 422
 
 
-@pytest.mark.parametrize("caminho", ["/", "/static/app.js", "/static/style.css", "/docs"])
+@pytest.mark.parametrize(
+    "caminho",
+    [
+        "/",
+        "/catalogo",
+        "/carrinho",
+        "/pedido-confirmado",
+        "/static/app.js",
+        "/static/style.css",
+        "/docs",
+    ],
+)
 def test_pagina_e_arquivos(client, caminho):
     resposta = client.get(caminho)
     assert resposta.status_code == 200

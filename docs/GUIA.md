@@ -18,7 +18,10 @@ ignorado pelo Git. Não requer senhas, GitHub ou configurações de nuvem.
 ## 3 Experimentar a loja
 
 Abrir a página local. Adicionar um caderno e duas canetas, conferir o total de R$ 25,70,
-simular o pedido e confirmar a mensagem de que não houve cobrança. Limpar o carrinho.
+usar o menu para abrir o carrinho e ajustar as quantidades. Clicar em Simular pedido
+e conferir a página de confirmação, com itens, total e número do pedido. Não há cobrança.
+Voltar ao catálogo pelo botão da confirmação. O carrinho acompanha a navegação e
+a atualização da página na mesma aba. Também é possível remover itens e limpar o carrinho.
 Em `/docs`, consultar o catálogo e testar quantidade zero para receber erro de validação.
 
 ## 4 Conferir testes e build
