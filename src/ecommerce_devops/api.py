@@ -32,7 +32,7 @@ class CarrinhoEntrada(BaseModel):
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="Loja DevOps Acadêmica", version="0.1.0")
+    app = FastAPI(title="Loja DevOps Acadêmica", version="0.2.0")
     app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
     @app.middleware("http")
@@ -40,7 +40,7 @@ def create_app() -> FastAPI:
         resposta = await call_next(request)
         resposta.headers["X-Content-Type-Options"] = "nosniff"
         resposta.headers["Referrer-Policy"] = "no-referrer"
-        if request.url.path == "/":
+        if request.url.path in {"/", "/catalogo", "/carrinho", "/pedido-confirmado"}:
             resposta.headers["Content-Security-Policy"] = (
                 "default-src 'self'; script-src 'self'; style-src 'self'; "
                 "object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
@@ -55,12 +55,15 @@ def create_app() -> FastAPI:
         )
 
     @app.get("/", include_in_schema=False)
+    @app.get("/catalogo", include_in_schema=False)
+    @app.get("/carrinho", include_in_schema=False)
+    @app.get("/pedido-confirmado", include_in_schema=False)
     def pagina():
         return FileResponse(STATIC / "index.html")
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "version": "0.1.0"}
+        return {"status": "ok", "version": "0.2.0"}
 
     @app.get("/produtos")
     def produtos():

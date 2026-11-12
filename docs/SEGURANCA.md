@@ -38,6 +38,9 @@ O aplicativo deve ser usado em laboratório, inicialmente no endereço local 127
 Ele não possui autenticação, persistência, controle antifraude nem transações comerciais.
 Não expor a loja como um e-commerce de produção. Os campos da API não aceitam dados de
 clientes e a resposta de validação não repete o valor rejeitado.
+O armazenamento da sessão do navegador contém somente IDs de produtos, quantidades
+e o resumo fictício do último pedido. Não inserir informações pessoais nesse estado.
+Ele não substitui uma base de pedidos, autenticação ou controle real de estoque.
 
 Não habilitar logs de corpo de requisição, variáveis de ambiente ou cabeçalhos de
 autenticação. Logs de acesso do servidor podem registrar o endereço solicitado;

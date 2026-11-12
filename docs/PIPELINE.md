@@ -23,7 +23,7 @@ No GitHub Actions os estágios são representados por jobs ligados por `needs`; 
 uma chave `stages` nesse formato. Um job contém steps sequenciais. O padrão de `needs`
 impede jobs seguintes de executar diante de falha, aplicando Fail Fast entre etapas.
 
-O nome do wheel contém a versão 0.1.0. O upload também identifica o commit pelo SHA.
+O nome do wheel contém a versão 0.2.0. O upload também identifica o commit pelo SHA.
 Pacote e relatórios aprovados são mantidos por sete dias no GitHub, conforme configuração.
 Aumentar o prazo antes da entrega se o período de avaliação exigir disponibilidade maior.
 

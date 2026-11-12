@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ecommerce-devops-academico"
-version = "0.1.0"
+version = "0.2.0"
 description = "Loja didática para as práticas de DevOps."
 readme = "README.md"
 requires-python = ">=3.12,<3.13"

@@ -8,26 +8,43 @@
   <script src="/static/app.js" defer></script>
 </head>
 <body>
-  <header><span class="marca">LOJA DE ESTUDOS</span><span class="selo">Projeto acadêmico</span></header>
+  <div class="faixa">Uma loja para experimentar. Todos os pedidos são simulados.</div>
+  <header>
+    <a class="marca" href="/" aria-label="Loja de Estudos — início">LOJA DE ESTUDOS<span>Boas ideias começam aqui.</span></a>
+    <nav aria-label="Navegação principal"><a href="/" data-nav="inicio">Início</a><a href="/catalogo" data-nav="catalogo">Catálogo</a><a href="/carrinho" data-nav="carrinho">Carrinho <span class="contador" data-contador>0</span></a></nav>
+  </header>
   <main>
-    <section class="intro"><p class="etiqueta">PEQUENAS IDEIAS, GRANDES PROJETOS</p>
-      <h1>Seu próximo estudo<br>começa aqui.</h1>
-      <p>Uma loja didática para praticar desenvolvimento, testes e entrega contínua.</p>
+    <section data-view="inicio" hidden>
+      <div class="hero">
+        <div><p class="etiqueta">PARA ESTUDAR, CRIAR E RECOMEÇAR</p><h1>Pequenas escolhas.<br>Grandes ideias.</h1><p>Encontre os companheiros da sua próxima sessão de estudos.</p><a class="botao" href="/catalogo">Explorar o catálogo <span aria-hidden="true">↗</span></a></div>
+        <div class="hero-visual" aria-hidden="true"><span class="hero-adesivo">FEITO PARA<br>SUAS IDEIAS</span><span class="hero-caderno">📓</span><span class="hero-caneta">🖊️</span><span class="hero-caneca">☕</span></div>
+      </div>
+      <div class="colunas">
+        <section aria-labelledby="titulo-destaques"><div class="titulo-secao"><div><p class="etiqueta">NOSSA SELEÇÃO</p><h2 id="titulo-destaques">Destaques da loja</h2></div><a href="/catalogo">Ver todos os produtos →</a></div><div data-produtos class="produtos"></div></section>
+        <aside aria-label="Resumo do carrinho"><h2>Seu carrinho</h2><div data-itens></div><p class="total">Total <strong data-total>R$ 0,00</strong></p><a class="botao" href="/carrinho">Ver meu carrinho</a><button data-finalizar disabled>Simular pedido</button><p data-mensagem role="status" aria-live="polite"></p></aside>
+      </div>
+      <div class="beneficios"><p><strong>Escolha com calma</strong><span>Um catálogo simples para explorar.</span></p><p><strong>Seu carrinho acompanha você</strong><span>Navegue sem perder os produtos.</span></p><p><strong>Experimente sem cobrança</strong><span>Pedidos inteiramente fictícios.</span></p></div>
     </section>
-    <div class="colunas">
-      <section aria-labelledby="titulo-produtos"><h2 id="titulo-produtos">Nosso catálogo</h2>
-        <div id="produtos" class="produtos"></div>
-      </section>
-      <aside aria-labelledby="titulo-carrinho"><h2 id="titulo-carrinho">Seu carrinho</h2>
-        <div id="carrinho"><p class="vazio">Escolha um produto para começar.</p></div>
-        <p class="total">Total <strong id="total">R$ 0,00</strong></p>
-        <button id="finalizar" disabled>Simular pedido</button>
-        <button id="limpar" class="secundario">Limpar carrinho</button>
-        <p id="mensagem" role="status" aria-live="polite"></p>
-      </aside>
-    </div>
-    <p class="aviso">Dados fictícios. Nenhuma compra, cobrança ou reserva de estoque é realizada.</p>
+    <section data-view="catalogo" hidden>
+      <div class="intro"><p class="etiqueta">BEM-VINDO AO CATÁLOGO</p><h1>Para sua rotina de estudos.</h1><p>Escolha um produto e adicione ao carrinho para experimentar a loja.</p></div>
+      <div class="colunas"><section aria-labelledby="titulo-produtos"><h2 id="titulo-produtos">Todos os produtos</h2><div data-produtos class="produtos"></div></section><aside aria-label="Resumo do carrinho"><h2>Seu carrinho</h2><div data-itens></div><p class="total">Total <strong data-total>R$ 0,00</strong></p><a class="botao" href="/carrinho">Ver meu carrinho</a><button data-finalizar disabled>Simular pedido</button><p data-mensagem role="status" aria-live="polite"></p></aside></div>
+    </section>
+    <section data-view="carrinho" hidden>
+      <div class="intro"><p class="etiqueta">FALTA SÓ CONFERIR</p><h1>Seu carrinho.</h1><p>Ajuste as quantidades e confira o total antes de simular o pedido.</p></div>
+      <div class="carrinho-layout"><div class="lista-carrinho" data-itens data-editavel="true"></div><aside><h2>Resumo do pedido</h2><p class="total">Total <strong data-total>R$ 0,00</strong></p><p class="vazio">Não vamos pedir endereço, cartão ou dados pessoais.</p><button data-finalizar disabled>Simular pedido</button><button data-limpar class="secundario">Limpar carrinho</button><p data-mensagem role="status" aria-live="polite"></p></aside></div>
+      <a class="voltar" href="/catalogo">← Continuar escolhendo</a>
+    </section>
+    <section data-view="pedido" hidden>
+      <div id="pedido-confirmado" hidden>
+        <div class="confirmacao"><span class="check" aria-hidden="true">✓</span><p class="etiqueta">DEU TUDO CERTO</p><h1>Pedido simulado confirmado!</h1><p>Seus produtos estão no resumo abaixo. Nenhuma cobrança foi realizada.</p><p class="numero-pedido">Número do pedido <strong id="pedido-numero"></strong></p></div>
+        <div class="resumo-pedido"><h2>O que você escolheu</h2><div id="pedido-itens"></div><p class="total">Total simulado <strong id="pedido-total"></strong></p></div>
+        <div class="acoes-pedido"><a class="botao" href="/catalogo">Voltar ao catálogo</a><a class="botao secundario" href="/">Ir para o início</a></div>
+      </div>
+      <div id="pedido-ausente" class="estado-vazio" hidden><p class="etiqueta">AINDA NÃO HÁ UM PEDIDO</p><h1>Vamos começar pelo catálogo?</h1><p>Adicione produtos ao carrinho e clique em “Simular pedido” para ver a confirmação aqui.</p><a class="botao" href="/catalogo">Explorar produtos</a></div>
+    </section>
+    <noscript><p>Ative o JavaScript para usar o catálogo e o carrinho da loja.</p></noscript>
+    <p class="aviso">Projeto acadêmico com dados fictícios. Nenhuma compra, cobrança ou reserva de estoque é realizada.</p>
   </main>
-  <footer>Aprender, testar e melhorar a cada entrega.</footer>
+  <footer><span class="marca">LOJA DE ESTUDOS</span><p>Aprender, testar e melhorar a cada entrega.</p><a href="/catalogo">Catálogo</a></footer>
 </body>
 </html>

@@ -1,9 +1,12 @@
 # Loja de Estudos DevOps
 
 E-commerce didático em Python para as Práticas 1 e 2 da disciplina de DevOps.
-Permite consultar três produtos fictícios, montar um carrinho e simular um pedido.
+Tem início com produtos em destaque, catálogo, carrinho e confirmação de pedido.
+Permite consultar três produtos fictícios, ajustar quantidades e simular um pedido.
 Não recebe dados de clientes nem processa pagamentos. Os pedidos não são persistidos
 e o estoque é demonstrativo, sem reserva ou baixa real.
+O carrinho e a última confirmação ficam somente na sessão da aba do navegador,
+para permitir navegar e recarregar a página. Não são salvos no servidor.
 
 ## Comece por aqui
 
@@ -27,6 +30,10 @@ python -m venv .venv
 ```
 
 Abra <http://127.0.0.1:8000>. A documentação da API fica em <http://127.0.0.1:8000/docs>.
+O menu abre o [catálogo](http://127.0.0.1:8000/catalogo) e o
+[carrinho](http://127.0.0.1:8000/carrinho). O botão **Simular pedido** leva à página
+de confirmação com número, itens e total. Sem pedido nesta aba, essa página orienta
+voltar ao catálogo.
 Encerre o servidor com Ctrl+C. Não é necessário ativar o ambiente virtual nem mudar
 a política de execução do PowerShell.
 
@@ -44,7 +51,7 @@ Em outro terminal, na pasta do projeto:
 
 O limite mínimo de cobertura combinada de linhas e ramificações é 90%, escolha do projeto;
 o professor pede validação da cobertura, mas não define um percentual no roteiro recebido.
-O pacote gerado é `dist/ecommerce_devops_academico-0.1.0-py3-none-any.whl`.
+O pacote gerado é `dist/ecommerce_devops_academico-0.2.0-py3-none-any.whl`.
 
 ## API
 
