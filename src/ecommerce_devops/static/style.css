@@ -1,0 +1,20 @@
+:root{font-family:Segoe UI,Arial,sans-serif;color:#183c35;background:#f7f8f3;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}header,main,footer{max-width:1120px;margin:auto;padding:28px}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dce4da}
+.marca{font-size:15px;font-weight:800;letter-spacing:2px}.selo{font-size:12px;background:#e4eddf;padding:8px 12px;border-radius:20px}
+.intro{padding:35px 0 45px}.etiqueta{font-size:11px;letter-spacing:2px;font-weight:700;color:#557b54}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.1;letter-spacing:-2px;margin:16px 0 20px}
+.intro>p:last-child{color:#587067;max-width:500px;line-height:1.7}h2{font-size:20px;margin:0 0 22px}
+.colunas{display:grid;grid-template-columns:1fr 300px;gap:34px;align-items:start}
+.produtos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.produto{padding:20px;border:1px solid #e0e6db;background:white;border-radius:16px}
+.icone{height:104px;display:grid;place-items:center;font-size:50px;border-radius:10px;background:#eef3e7}
+.produto h3{font-size:16px;line-height:1.4;min-height:44px;margin:18px 0 8px}.preco{font-size:21px;font-weight:700}
+.estoque{font-size:12px;color:#587067;margin:8px 0 20px}button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:12px;background:#204e40;color:white;width:100%}
+button:hover{background:#2e6554}button:disabled{opacity:.5;cursor:default}button:focus-visible{outline:3px solid #e3ac31;outline-offset:3px}
+aside{background:#edf2e7;border-radius:16px;padding:24px}.total{border-top:1px solid #ced9c6;padding-top:20px;display:flex;justify-content:space-between}
+.linha{font-size:14px;line-height:1.5;margin:14px 0}.vazio,.aviso{font-size:13px;color:#587067;line-height:1.6}
+.secundario{background:transparent;color:#204e40;margin-top:10px;border:1px solid #b8cbb6}.secundario:hover{background:#dde8d6}
+#mensagem{font-size:13px;line-height:1.5;overflow-wrap:anywhere}.aviso{margin-top:32px}footer{font-size:12px;color:#587067;border-top:1px solid #dce4da}
+@media(max-width:900px){.colunas{grid-template-columns:1fr}.produtos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){header,main,footer{padding:20px}.produtos{grid-template-columns:1fr}.produto h3{min-height:0}.intro{padding-top:20px}.selo{font-size:10px}}
