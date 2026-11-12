@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools==84.2.1", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecommerce-devops-academico"
+version = "0.1.0"
+description = "Loja didática para as práticas de DevOps."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = ["fastapi==0.162.5", "uvicorn==0.54.0"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ecommerce_devops"]
+
+[tool.setuptools.package-data]
+ecommerce_devops = ["static/index.html", "static/app.js", "static/style.css"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = ["unit: regras do domínio", "integration: integração HTTP e domínio"]
+
+[tool.coverage.run]
+branch = true
+source = ["ecommerce_devops"]
+relative_files = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

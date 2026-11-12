@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loja de estudos</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header><span class="marca">LOJA DE ESTUDOS</span><span class="selo">Projeto acadêmico</span></header>
+  <main>
+    <section class="intro"><p class="etiqueta">PEQUENAS IDEIAS, GRANDES PROJETOS</p>
+      <h1>Seu próximo estudo<br>começa aqui.</h1>
+      <p>Uma loja didática para praticar desenvolvimento, testes e entrega contínua.</p>
+    </section>
+    <div class="colunas">
+      <section aria-labelledby="titulo-produtos"><h2 id="titulo-produtos">Nosso catálogo</h2>
+        <div id="produtos" class="produtos"></div>
+      </section>
+      <aside aria-labelledby="titulo-carrinho"><h2 id="titulo-carrinho">Seu carrinho</h2>
+        <div id="carrinho"><p class="vazio">Escolha um produto para começar.</p></div>
+        <p class="total">Total <strong id="total">R$ 0,00</strong></p>
+        <button id="finalizar" disabled>Simular pedido</button>
+        <button id="limpar" class="secundario">Limpar carrinho</button>
+        <p id="mensagem" role="status" aria-live="polite"></p>
+      </aside>
+    </div>
+    <p class="aviso">Dados fictícios. Nenhuma compra, cobrança ou reserva de estoque é realizada.</p>
+  </main>
+  <footer>Aprender, testar e melhorar a cada entrega.</footer>
+</body>
+</html>
