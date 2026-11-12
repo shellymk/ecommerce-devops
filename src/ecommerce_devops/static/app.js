@@ -106,6 +106,8 @@ async function carregarProdutos() {
   });
 }
 function mostrarPedido() {
+  document.getElementById("pedido-confirmado").hidden = true;
+  document.getElementById("pedido-ausente").hidden = true;
   try {
     const pedido = JSON.parse(sessionStorage.getItem(ORDER_KEY) || "null");
     if (!pedido || pedido.status !== "simulado" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(pedido.pedido_id) ||
