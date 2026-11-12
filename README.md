@@ -42,7 +42,7 @@ Em outro terminal, na pasta do projeto:
 .\.venv\Scripts\python.exe tools/validar_artefato.py
 ```
 
-O limite mínimo de cobertura de linhas e ramificações é 90%, uma escolha deste projeto;
+O limite mínimo de cobertura combinada de linhas e ramificações é 90%, escolha do projeto;
 o professor pede validação da cobertura, mas não define um percentual no roteiro recebido.
 O pacote gerado é `dist/ecommerce_devops_academico-0.1.0-py3-none-any.whl`.
 

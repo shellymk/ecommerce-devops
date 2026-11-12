@@ -1,6 +1,6 @@
 # Integração contínua
 
-O arquivo `.github/workflows/ci.yml` executa em push das branches previstas, PR para
+O arquivo `.github/workflows/ci.yml` executa em push da main, PR para
 main ou acionamento manual. Cada etapa usa o mesmo commit e Python 3.12.14.
 
 ## Ordem de execução

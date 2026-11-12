@@ -29,14 +29,18 @@ Na conta GitHub, conferir Settings → Emails para manter o e-mail particular pr
 se disponível, bloquear pushes que exponham esse endereço. O noreply não é senha,
 token nem chave de acesso. Conferir autores antes de enviar o histórico.
 
-## Publicação futura
+## Repositório do projeto
 
-O nome proposto é `ecommerce-devops`, no perfil shellymk. Não há remoto configurado
-antes da escolha da visibilidade e criação do repositório. Preferir privado durante a
-revisão inicial e verificar como o professor receberá acesso, caso permaneça privado.
-Um repositório público expõe código, documentação e histórico.
+Repositório público criado por escolha do estudante:
+<https://github.com/shellymk/ecommerce-devops>.
+Código, documentação e histórico são públicos. O envio usa SSH e a chave existente,
+sem copiar a chave privada nem inserir credenciais em arquivos.
 
-Criar o repositório vazio no GitHub, sem README adicional, licença ou .gitignore.
-Após confirmar seu endereço real, associar o origin e enviar main e feat/loja.
+```text
+git@github.com:shellymk/ecommerce-devops.git
+```
+
+O repositório foi criado vazio, sem README adicional, licença ou .gitignore.
+Associar o origin confirmado e enviar main e feat/loja.
 Abrir PR de feat/loja para main. Não integrar antes de conferir a CI e as evidências.
 Não colar token em URL nem no terminal: usar a autenticação do GitHub no navegador.
