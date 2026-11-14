@@ -89,20 +89,51 @@ async function carregarProdutos() {
   const resposta = await fetch("/produtos");
   if (!resposta.ok) throw new Error("Não foi possível carregar o catálogo.");
   const produtos = await resposta.json();
-  const icones = {1: "📓", 2: "🖊️", 3: "☕"};
+  const imagens = {1: "caderno", 2: "caneta", 3: "caneca"};
+  const categorias = {1: "No papel", 2: "Na ponta da caneta", 3: "Hora da pausa"};
+  document.querySelectorAll("[data-hero-preco]").forEach(elemento => {
+    const produto = produtos.find(item => item.id === Number(elemento.dataset.heroPreco));
+    if (produto) elemento.textContent = moeda(produto.preco_centavos);
+  });
   document.querySelectorAll(`[data-view="${pagina}"] [data-produtos]`).forEach(container => {
     container.replaceChildren();
     produtos.forEach(produto => {
       const card = document.createElement("article"); card.className = "produto";
-      const icone = document.createElement("div"); icone.className = `icone produto-${produto.id}`; icone.textContent = icones[produto.id] || "📦"; icone.setAttribute("aria-hidden", "true");
+      const visual = document.createElement("div"); visual.className = "produto-imagem";
+      if (imagens[produto.id]) {
+        const imagem = document.createElement("img"); imagem.src = `/static/imagens/${imagens[produto.id]}.png`;
+        imagem.alt = produto.nome; imagem.loading = "lazy"; imagem.width = 1254; imagem.height = 1254; visual.append(imagem);
+      }
+      const categoria = document.createElement("p"); categoria.className = "produto-categoria"; categoria.textContent = categorias[produto.id] || "Nossa seleção";
       const titulo = document.createElement("h3"); titulo.textContent = produto.nome;
       const preco = document.createElement("div"); preco.className = "preco"; preco.textContent = moeda(produto.preco_centavos);
       const estoque = document.createElement("p"); estoque.className = "estoque"; estoque.textContent = `${produto.estoque} unidades demonstrativas`;
       const botao = document.createElement("button"); botao.textContent = "Adicionar ao carrinho"; botao.dataset.adicionar = "true";
+      const mais = document.createElement("span"); mais.textContent = "+"; mais.setAttribute("aria-hidden", "true"); botao.append(mais);
       botao.setAttribute("aria-label", `Adicionar ${produto.nome}`);
       botao.addEventListener("click", () => alterar(produto.id, (selecionados.get(produto.id) || 0) + 1));
-      card.append(icone, titulo, preco, estoque, botao); container.append(card);
+      card.append(visual, categoria, titulo, preco, estoque, botao); container.append(card);
     });
+  });
+}
+function iniciarCarrossel() {
+  const carrossel = document.querySelector("[data-carrossel]");
+  if (pagina !== "inicio" || !carrossel) return;
+  const slides = Array.from(carrossel.querySelectorAll("[data-slide]"));
+  const pontos = Array.from(carrossel.querySelectorAll("[data-slide-ir]"));
+  let atual = 0;
+  function mostrar(indice) {
+    atual = (indice + slides.length) % slides.length;
+    slides.forEach((slide, i) => { slide.hidden = i !== atual; });
+    pontos.forEach((ponto, i) => { ponto.setAttribute("aria-pressed", String(i === atual)); });
+    carrossel.querySelector("[data-slide-status]").textContent = `${String(atual + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+  }
+  carrossel.querySelector("[data-slide-anterior]").addEventListener("click", () => mostrar(atual - 1));
+  carrossel.querySelector("[data-slide-proximo]").addEventListener("click", () => mostrar(atual + 1));
+  pontos.forEach(ponto => ponto.addEventListener("click", () => mostrar(Number(ponto.dataset.slideIr))));
+  carrossel.addEventListener("keydown", evento => {
+    if (!evento.target.closest("[data-carousel-control]") || !["ArrowLeft", "ArrowRight"].includes(evento.key)) return;
+    evento.preventDefault(); mostrar(atual + (evento.key === "ArrowRight" ? 1 : -1));
   });
 }
 function mostrarPedido() {
@@ -153,4 +184,5 @@ async function iniciar() {
   catch (erro) { mensagem(erro.message); }
 }
 window.addEventListener("pageshow", evento => { if (evento.persisted) iniciar(); });
+iniciarCarrossel();
 iniciar();

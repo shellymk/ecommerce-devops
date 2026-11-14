@@ -8,7 +8,7 @@ import tomllib
 import zipfile
 from pathlib import Path
 
-from verificar_segredos import verificar
+from verificar_segredos import IMAGENS_PERMITIDAS, verificar_arquivo
 
 ROOT = Path(__file__).resolve().parents[1]
 PACOTE = {
@@ -19,6 +19,7 @@ PACOTE = {
     "ecommerce_devops/static/app.js",
     "ecommerce_devops/static/style.css",
 }
+PACOTE.update(nome.removeprefix("src/") for nome in IMAGENS_PERMITIDAS)
 METADADOS = {"METADATA", "WHEEL", "top_level.txt", "RECORD"}
 
 
@@ -44,8 +45,7 @@ def main() -> int:
         ):
             raise SystemExit("Conteúdo inesperado no wheel. Revisar antes de distribuir.")
         for nome in nomes:
-            conteudo = arquivo.read(nome).decode("utf-8")
-            if verificar(nome, conteudo):
+            if verificar_arquivo("src/" + nome, arquivo.read(nome)):
                 raise SystemExit("Padrão sensível detectado no wheel; conteúdo omitido.")
     with tempfile.TemporaryDirectory(prefix="loja-validacao-") as pasta:
         destino = str(Path(pasta) / "instalado")
@@ -84,6 +84,7 @@ with TestClient(create_app()) as client:
     assert client.get('/health').status_code == 200
     assert client.get('/').status_code == 200
     assert client.get('/static/app.js').status_code == 200
+    assert client.get('/static/imagens/caderno.png').headers['content-type'] == 'image/png'
     r = client.post('/pedidos', json={'itens': [{'produto_id': 1, 'quantidade': 2}]})
     assert r.status_code == 201 and r.json()['total_centavos'] == 3180
 """

@@ -3,6 +3,7 @@
 Não cobre o histórico nem todos os formatos de segredos ou dados pessoais.
 """
 
+import hashlib
 import re
 import subprocess
 from pathlib import Path
@@ -29,6 +30,17 @@ NOMES_PROIBIDOS = {
 }
 PASTAS_PROIBIDAS = {".ssh", ".aws", ".secrets", ".venv", "venv", "evidencias-locais"}
 EXTENSOES_PROIBIDAS = {".pem", ".key", ".p12", ".pfx"}
+IMAGENS_PERMITIDAS = {
+    "src/ecommerce_devops/static/imagens/caderno.png": (
+        "3cbe2b8df20913c47c6004529f0edc2e05fde1a9e8f01969c9a04d1c826eba36"
+    ),
+    "src/ecommerce_devops/static/imagens/caneca.png": (
+        "6b98a3e2b47b0b3ab7b0d19113f0eb667a75205de40ef3774a0b7f948d4f1f3b"
+    ),
+    "src/ecommerce_devops/static/imagens/caneta.png": (
+        "65ec06603f5e15dae8672784127eb8bfa974e639e5b15e82be61007ca1c007ae"
+    ),
+}
 
 
 def verificar(nome: str, conteudo: str) -> list[str]:
@@ -45,6 +57,21 @@ def verificar(nome: str, conteudo: str) -> list[str]:
         if padrao.search(conteudo):
             problemas.append(regra)
     return problemas
+
+
+def verificar_arquivo(nome: str, dados: bytes) -> list[str]:
+    problemas = verificar(nome, "")
+    if nome in IMAGENS_PERMITIDAS:
+        if hashlib.sha256(dados).hexdigest() != IMAGENS_PERMITIDAS[nome]:
+            problemas.append("imagem diferente da versão ilustrativa revisada")
+        return problemas
+    try:
+        conteudo = dados.decode("utf-8")
+        if "\x00" in conteudo:
+            raise UnicodeDecodeError("utf-8", dados, 0, 1, "conteúdo binário")
+    except UnicodeDecodeError:
+        return problemas + ["arquivo binário fora do escopo desta verificação"]
+    return verificar(nome, conteudo)
 
 
 def git(*argumentos: str) -> bytes:
@@ -64,13 +91,7 @@ def main() -> int:
         falhou = False
         for nome in nomes:
             dados = git("show", f":{nome}")
-            try:
-                conteudo = dados.decode("utf-8")
-            except UnicodeDecodeError:
-                print(f"REVISAR: {nome}: arquivo binário fora do escopo desta verificação")
-                falhou = True
-                continue
-            for problema in verificar(nome, conteudo):
+            for problema in verificar_arquivo(nome, dados):
                 print(f"REVISAR: {nome}: {problema}; conteúdo omitido")
                 falhou = True
         if falhou:
