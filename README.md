@@ -50,8 +50,6 @@ Em outro terminal, na pasta do projeto:
 ```
 
 O limite mínimo de cobertura combinada de linhas e ramificações é 90%, escolha do projeto;
-o professor pede validação da cobertura, mas não define um percentual no roteiro recebido.
-O pacote gerado é `dist/ecommerce_devops_academico-0.3.0-py3-none-any.whl`.
 
 As três imagens são ilustrações geradas para os produtos fictícios. São servidas
 localmente, sem chamadas a serviços de imagem. Consulte [a origem dos assets](docs/ASSETS.md).
