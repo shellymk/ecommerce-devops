@@ -1,7 +1,7 @@
 # Loja de Estudos DevOps
 
 E-commerce didático em Python para as Práticas 1 e 2 da disciplina de DevOps.
-Tem início com produtos em destaque, catálogo, carrinho e confirmação de pedido.
+Tem banner em carrossel, produtos em destaque, catálogo, carrinho e confirmação de pedido.
 Permite consultar três produtos fictícios, ajustar quantidades e simular um pedido.
 Não recebe dados de clientes nem processa pagamentos. Os pedidos não são persistidos
 e o estoque é demonstrativo, sem reserva ou baixa real.
@@ -51,7 +51,10 @@ Em outro terminal, na pasta do projeto:
 
 O limite mínimo de cobertura combinada de linhas e ramificações é 90%, escolha do projeto;
 o professor pede validação da cobertura, mas não define um percentual no roteiro recebido.
-O pacote gerado é `dist/ecommerce_devops_academico-0.2.0-py3-none-any.whl`.
+O pacote gerado é `dist/ecommerce_devops_academico-0.3.0-py3-none-any.whl`.
+
+As três imagens são ilustrações geradas para os produtos fictícios. São servidas
+localmente, sem chamadas a serviços de imagem. Consulte [a origem dos assets](docs/ASSETS.md).
 
 ## API
 

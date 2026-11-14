@@ -15,7 +15,7 @@ def client():
 def test_health(client):
     resposta = client.get("/health")
     assert resposta.status_code == 200
-    assert resposta.json() == {"status": "ok", "version": "0.2.0"}
+    assert resposta.json() == {"status": "ok", "version": "0.3.0"}
 
 
 def test_catalogo_e_produto(client):
@@ -94,6 +94,9 @@ def test_json_invalido(client):
         "/pedido-confirmado",
         "/static/app.js",
         "/static/style.css",
+        "/static/imagens/caderno.png",
+        "/static/imagens/caneta.png",
+        "/static/imagens/caneca.png",
         "/docs",
     ],
 )

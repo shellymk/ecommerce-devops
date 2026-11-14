@@ -8,22 +8,30 @@
   <script src="/static/app.js" defer></script>
 </head>
 <body>
-  <div class="faixa">Uma loja para experimentar. Todos os pedidos são simulados.</div>
+  <div class="faixa">Papelaria para os seus próximos capítulos. <span>Loja acadêmica · pedidos simulados, sem cobrança.</span></div>
   <header>
-    <a class="marca" href="/" aria-label="Loja de Estudos — início">LOJA DE ESTUDOS<span>Boas ideias começam aqui.</span></a>
+    <a class="marca" href="/" aria-label="Loja de Estudos — início"><span class="marca-simbolo" aria-hidden="true">le.</span><span class="marca-texto">loja de estudos<small>PAPELARIA & BOAS IDEIAS</small></span></a>
     <nav aria-label="Navegação principal"><a href="/" data-nav="inicio">Início</a><a href="/catalogo" data-nav="catalogo">Catálogo</a><a href="/carrinho" data-nav="carrinho">Carrinho <span class="contador" data-contador>0</span></a></nav>
   </header>
   <main>
     <section data-view="inicio" hidden>
-      <div class="hero">
-        <div><p class="etiqueta">PARA ESTUDAR, CRIAR E RECOMEÇAR</p><h1>Pequenas escolhas.<br>Grandes ideias.</h1><p>Encontre os companheiros da sua próxima sessão de estudos.</p><a class="botao" href="/catalogo">Explorar o catálogo <span aria-hidden="true">↗</span></a></div>
-        <div class="hero-visual" aria-hidden="true"><span class="hero-adesivo">FEITO PARA<br>SUAS IDEIAS</span><span class="hero-caderno">📓</span><span class="hero-caneta">🖊️</span><span class="hero-caneca">☕</span></div>
-      </div>
-      <div class="colunas">
-        <section aria-labelledby="titulo-destaques"><div class="titulo-secao"><div><p class="etiqueta">NOSSA SELEÇÃO</p><h2 id="titulo-destaques">Destaques da loja</h2></div><a href="/catalogo">Ver todos os produtos →</a></div><div data-produtos class="produtos"></div></section>
-        <aside aria-label="Resumo do carrinho"><h2>Seu carrinho</h2><div data-itens></div><p class="total">Total <strong data-total>R$ 0,00</strong></p><a class="botao" href="/carrinho">Ver meu carrinho</a><button data-finalizar disabled>Simular pedido</button><p data-mensagem role="status" aria-live="polite"></p></aside>
-      </div>
-      <div class="beneficios"><p><strong>Escolha com calma</strong><span>Um catálogo simples para explorar.</span></p><p><strong>Seu carrinho acompanha você</strong><span>Navegue sem perder os produtos.</span></p><p><strong>Experimente sem cobrança</strong><span>Pedidos inteiramente fictícios.</span></p></div>
+      <section class="vitrine" aria-label="Seleção da loja" aria-roledescription="carrossel" data-carrossel>
+        <article class="banner banner-caderno" data-slide role="group" aria-roledescription="slide" aria-label="1 de 3: Caderno de ideias">
+          <div class="banner-texto"><p class="etiqueta">UM NOVO CAPÍTULO COMEÇA NO PAPEL</p><h1>Dê espaço<br>às suas ideias.</h1><p>Planos, rabiscos, descobertas. Um caderno para acompanhar tudo o que ainda vem por aí.</p><a class="botao" href="/catalogo">Encontre seu caderno <span aria-hidden="true">↗</span></a><span class="banner-nota">Caderno de ideias · <strong data-hero-preco="1">R$ 15,90</strong></span></div>
+          <div class="banner-foto"><img src="/static/imagens/caderno.png" alt="Caderno de capa vinho sobre uma mesa clara" width="1254" height="1254" fetchpriority="high"><span class="selo-foto">PÁGINAS EM BRANCO.<br>POSSIBILIDADES SEM FIM.</span></div>
+        </article>
+        <article class="banner banner-caneta" data-slide role="group" aria-roledescription="slide" aria-label="2 de 3: Caneta azul" hidden>
+          <div class="banner-texto"><p class="etiqueta">DA PRIMEIRA LINHA À ÚLTIMA IDEIA</p><h1>Tem ideia boa<br>pedindo passagem.</h1><p>Para anotar aquele pensamento antes que ele vá embora. O básico que faz parte da rotina.</p><a class="botao" href="/catalogo">Escolha sua caneta <span aria-hidden="true">↗</span></a><span class="banner-nota">Caneta azul · <strong data-hero-preco="2">R$ 4,90</strong> a unidade</span></div>
+          <div class="banner-foto"><img src="/static/imagens/caneta.png" alt="Canetas azuis sobre uma mesa clara" width="1254" height="1254"><span class="selo-foto">ANOTE HOJE.<br>REINVENTE AMANHÃ.</span></div>
+        </article>
+        <article class="banner banner-caneca" data-slide role="group" aria-roledescription="slide" aria-label="3 de 3: Caneca de estudos" hidden>
+          <div class="banner-texto"><p class="etiqueta">ENTRE UMA PÁGINA E OUTRA</p><h1>Uma pausa.<br>Mais inspiração.</h1><p>Seu cantinho de estudos também merece um pouco de aconchego. Escolha sua companhia para a próxima pausa.</p><a class="botao" href="/catalogo">Conheça a caneca <span aria-hidden="true">↗</span></a><span class="banner-nota">Caneca de estudos · <strong data-hero-preco="3">R$ 29,90</strong></span></div>
+          <div class="banner-foto"><img src="/static/imagens/caneca.png" alt="Caneca de cerâmica amarela sobre uma mesa clara" width="1254" height="1254"><span class="selo-foto">SEU MOMENTO.<br>NO SEU RITMO.</span></div>
+        </article>
+        <div class="carrossel-controles"><span class="carrossel-contagem" data-slide-status role="status" aria-live="polite">01 / 03</span><div class="carrossel-pontos" aria-label="Escolher destaque"><button data-slide-ir="0" aria-label="Mostrar Caderno de ideias" aria-pressed="true" data-carousel-control></button><button data-slide-ir="1" aria-label="Mostrar Caneta azul" aria-pressed="false" data-carousel-control></button><button data-slide-ir="2" aria-label="Mostrar Caneca de estudos" aria-pressed="false" data-carousel-control></button></div><div class="carrossel-setas"><button data-slide-anterior aria-label="Destaque anterior" data-carousel-control>←</button><button data-slide-proximo aria-label="Próximo destaque" data-carousel-control>→</button></div></div>
+      </section>
+      <div class="beneficios"><p><span class="beneficio-numero">01</span><strong>Escolha seus favoritos</strong><span>Papelaria para acompanhar sua rotina.</span></p><p><span class="beneficio-numero">02</span><strong>Monte seu carrinho</strong><span>Ajuste os itens antes de continuar.</span></p><p><span class="beneficio-numero">03</span><strong>Experimente a loja</strong><span>Simule seu pedido sem nenhuma cobrança.</span></p></div>
+      <section class="destaques" aria-labelledby="titulo-destaques"><div class="titulo-secao"><div><p class="etiqueta">PEQUENOS ACHADOS PARA O DIA A DIA</p><h2 id="titulo-destaques">Produtos em destaque</h2></div><a href="/catalogo">Ver catálogo completo <span aria-hidden="true">↗</span></a></div><div data-produtos class="produtos"></div><div class="recado-loja"><p data-mensagem role="status" aria-live="polite"></p><a href="/carrinho">Conferir meu carrinho →</a></div></section>
     </section>
     <section data-view="catalogo" hidden>
       <div class="intro"><p class="etiqueta">BEM-VINDO AO CATÁLOGO</p><h1>Para sua rotina de estudos.</h1><p>Escolha um produto e adicione ao carrinho para experimentar a loja.</p></div>
@@ -45,6 +53,6 @@
     <noscript><p>Ative o JavaScript para usar o catálogo e o carrinho da loja.</p></noscript>
     <p class="aviso">Projeto acadêmico com dados fictícios. Nenhuma compra, cobrança ou reserva de estoque é realizada.</p>
   </main>
-  <footer><span class="marca">LOJA DE ESTUDOS</span><p>Aprender, testar e melhorar a cada entrega.</p><a href="/catalogo">Catálogo</a></footer>
+  <footer><div><span class="footer-marca">loja de estudos.</span><p>Um lugar para suas próximas ideias.</p></div><p>Papelaria, pausas e novos começos.</p><a href="/catalogo">Conheça o catálogo ↗</a></footer>
 </body>
 </html>

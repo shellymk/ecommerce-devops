@@ -32,7 +32,7 @@ class CarrinhoEntrada(BaseModel):
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="Loja DevOps Acadêmica", version="0.2.0")
+    app = FastAPI(title="Loja DevOps Acadêmica", version="0.3.0")
     app.mount("/static", StaticFiles(directory=STATIC), name="static")
 
     @app.middleware("http")
@@ -63,7 +63,7 @@ def create_app() -> FastAPI:
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "version": "0.2.0"}
+        return {"status": "ok", "version": "0.3.0"}
 
     @app.get("/produtos")
     def produtos():

@@ -32,7 +32,11 @@ apenas apagar a linha do código não resolve a exposição. Não enviar o segre
 Dependências têm versões e hashes fixos. A CI usa ações oficiais com SHA completo,
 permissão de leitura do código e checkout sem persistir credenciais. Não há secrets
 personalizados nem publicação em PyPI. O wheel aceita somente fontes da aplicação,
-seus três arquivos estáticos e metadados previstos. Não empacota a pasta inteira.
+seus três arquivos estáticos, as três imagens ilustrativas locais e metadados previstos.
+Não empacota a pasta inteira. Os binários são aceitos somente por caminho e SHA-256
+exatos, após revisão visual; os demais continuam sendo rejeitados. Alterar uma imagem
+exige nova revisão e atualização explícita do hash. Isso confere integridade e não
+substitui a avaliação do conteúdo visual. A origem dos assets está em ASSETS.md.
 
 O aplicativo deve ser usado em laboratório, inicialmente no endereço local 127.0.0.1.
 Ele não possui autenticação, persistência, controle antifraude nem transações comerciais.

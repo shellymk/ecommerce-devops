@@ -27,3 +27,18 @@ def test_detecta_chave_privada_sintetica():
 
 def test_codigo_sem_credenciais():
     assert modulo.verificar("operacoes.py", "resultado = 2 + 3") == []
+
+
+@pytest.mark.parametrize("nome", list(modulo.IMAGENS_PERMITIDAS))
+def test_aceita_somente_imagem_revisada(nome):
+    dados = (arquivo.parents[1] / nome).read_bytes()
+    assert modulo.verificar_arquivo(nome, dados) == []
+
+
+@pytest.mark.parametrize("nome", list(modulo.IMAGENS_PERMITIDAS))
+def test_rejeita_substituicao_de_imagem(nome):
+    assert modulo.verificar_arquivo(nome, b"conteudo sintetico diferente")
+
+
+def test_rejeita_binario_sem_autorizacao():
+    assert modulo.verificar_arquivo("outro.png", b"\x89PNG\x00\xff")
